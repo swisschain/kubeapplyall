@@ -1,15 +1,7 @@
 #!/bin/sh
 
-apt update 
-apt-get install mlocate -y 
-updatedb 
-echo "========"
-find / -name deployment.yaml
-echo "========"
-locate deployment.yaml
-echo "========"
-ls
-echo "========"
+
+
 
 set -e
 
@@ -19,42 +11,18 @@ set -e
 echo "$KUBE_CONFIG_DATA" | base64 --decode > /tmp/config
 export KUBECONFIG=/tmp/config
 
-path=$(pwd)
-for main_directory in $path/*/
+echo "========"
+Namespace=$(find / -name namespace.yaml)
+echo $Namespace
+echo "========"
+Deployment=$(find / -name deployment.yaml)
+echo $Deployment
+for deployment2 in $Deployment
 do
-    cd $main_directory
-    current_directory=${PWD##*/}
-    echo "--------------------------"
-    if [ -e namespace.yaml ]
-    then
-       kubectl apply -f namespace.yaml
-    fi
-   echo "--------------------------"
+    kubectl apply -f $deployment2
 done
+echo "========"
 
-for main_directory in $path/*/
-do
-    cd $main_directory
-    current_directory=${PWD##*/}
-    echo "--------------------------"
-    if [ -e configmap.yaml ]
-    then
-       kubectl apply -f configmap.yaml
-    fi
-    if [ -e secret.yaml ]
-    then
-       kubectl apply -f secret.yaml
-    fi
-    if [ -e service.yaml ]
-    then
-       kubectl apply -f service.yaml
-    fi
-    if [ -e deployment.yaml ]
-    then
-       kubectl apply -f deployment.yaml
-    fi
-    echo "--------------------------"
-done
 
 sh -c "kubectl get pods --all-namespaces"
 
