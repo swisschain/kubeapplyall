@@ -36,3 +36,5 @@ for yaml in $Service
 do
     kubectl apply -f $yaml
 done
+
+rm /tmp/config
