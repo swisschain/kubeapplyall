@@ -2,6 +2,8 @@
 
 apt update 
 apt-get install mlocate -y 
+updatedb 
+find / -name namespace.yaml
 locate namespace.yaml
 set -e
 
