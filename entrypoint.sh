@@ -1,5 +1,8 @@
 #!/bin/sh
 
+apt update 
+apt-get install mlocate -y 
+locate namespace.yaml
 set -e
 
 # Extract the base64 encoded config data and write this to the KUBECONFIG
