@@ -12,8 +12,14 @@ do
     cd $main_directory
     current_directory=${PWD##*/}
     echo "--------------------------"
-    kubectl apply -f namespace.yaml
-    echo "--------------------------"
+    if [ -e namespace.yaml ]
+    then
+       echo "File Found"
+       kubectl apply -f namespace.yaml
+    else
+       echo "There is no namespace file"
+    fi
+   echo "--------------------------"
 done
 
 for main_directory in $path/*/
