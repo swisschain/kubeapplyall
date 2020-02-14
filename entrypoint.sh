@@ -14,10 +14,7 @@ do
     echo "--------------------------"
     if [ -e namespace.yaml ]
     then
-       echo "File Found"
        kubectl apply -f namespace.yaml
-    else
-       echo "There is no namespace file"
     fi
    echo "--------------------------"
 done
@@ -27,10 +24,22 @@ do
     cd $main_directory
     current_directory=${PWD##*/}
     echo "--------------------------"
-    kubectl apply -f configmap.yaml
-    kubectl apply -f secret.yaml
-    kubectl apply -f service.yaml
-    kubectl apply -f deployment.yaml
+    if [ -e configmap.yaml ]
+    then
+       kubectl apply -f configmap.yaml
+    fi
+    if [ -e secret.yaml ]
+    then
+       kubectl apply -f secret.yaml
+    fi
+    if [ -e service.yaml ]
+    then
+       kubectl apply -f service.yaml
+    fi
+    if [ -e deployment.yaml ]
+    then
+       kubectl apply -f deployment.yaml
+    fi
     echo "--------------------------"
 done
 
