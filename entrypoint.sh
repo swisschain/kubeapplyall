@@ -1,28 +1,38 @@
 #!/bin/sh
 
-
-
-
 set -e
-
-
 
 # Extract the base64 encoded config data and write this to the KUBECONFIG
 echo "$KUBE_CONFIG_DATA" | base64 --decode > /tmp/config
 export KUBECONFIG=/tmp/config
 
-echo "========"
 Namespace=$(find / -name namespace.yaml)
-echo $Namespace
-echo "========"
+Configmap=$(find / -name configmap.yaml)
+Secret=$(find / -name secret.yaml)
 Deployment=$(find / -name deployment.yaml)
-echo $Deployment
-for deployment2 in $Deployment
+Service=$(find / -name service.yaml)
+
+for yaml in $Namespace
 do
-    kubectl apply -f $deployment2
+    kubectl apply -f $yaml
 done
-echo "========"
 
+for yaml in $Configmap
+do
+    kubectl apply -f $yaml
+done
 
-sh -c "kubectl get pods --all-namespaces"
+for yaml in $Secret
+do
+    kubectl apply -f $yaml
+done
 
+for yaml in $Deployment
+do
+    kubectl apply -f $yaml
+done
+
+for yaml in $Service
+do
+    kubectl apply -f $yaml
+done
