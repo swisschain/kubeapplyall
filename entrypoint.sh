@@ -3,9 +3,17 @@
 apt update 
 apt-get install mlocate -y 
 updatedb 
-find / -name namespace.yaml
-locate namespace.yaml
+echo "========"
+find / -name deployment.yaml
+echo "========"
+locate deployment.yaml
+echo "========"
+ls
+echo "========"
+
 set -e
+
+
 
 # Extract the base64 encoded config data and write this to the KUBECONFIG
 echo "$KUBE_CONFIG_DATA" | base64 --decode > /tmp/config
