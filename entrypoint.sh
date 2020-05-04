@@ -6,7 +6,7 @@ set -e
 echo "$KUBE_CONFIG_DATA" | base64 --decode > /tmp/config
 export KUBECONFIG=/tmp/config
 
-Namespace=$(find / -name namespace.yaml)
+Namespace=$(find / -name namespace*)
 Configmap=$(find / -name "configmap*")
 Secret=$(find / -name secret.yaml)
 Deployment=$(find / -name deployment.yaml)
