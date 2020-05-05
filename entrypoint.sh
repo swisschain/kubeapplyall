@@ -6,7 +6,7 @@ set -e
 echo "$KUBE_CONFIG_DATA" | base64 --decode > /tmp/config
 export KUBECONFIG=/tmp/config
 
-Namespace=$(grep -iRl "Namespace" Kubernetes/01.namespaces/namespace_blockchains.yaml)
+Namespace=$(grep -iRl "Namespace" Kubernetes/01.namespaces/temp)
 Configmap=$(find / -name "configmap*")
 Secret=$(find / -name secret.yaml)
 Deployment=$(find / -name deployment.yaml)
