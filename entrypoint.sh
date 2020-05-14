@@ -6,6 +6,8 @@ set -e
 echo "$KUBE_CONFIG_DATA" | base64 --decode > /tmp/config
 export KUBECONFIG=/tmp/config
 
+kubectl get nodes
+
 Namespace=$(grep -Rl "Namespace")
 Configmap=$(find / -name "configmap*")
 Secret=$(find / -name secret.yaml)
