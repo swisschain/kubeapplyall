@@ -1,6 +1,12 @@
 #!/bin/sh
 
-#set -e
+set -e
+
+err_report() {
+    echo "Error on line $1"
+}
+
+trap 'err_report $LINENO' ERR
 
 # Extract the base64 encoded config data and write this to the KUBECONFIG
 echo "$KUBE_CONFIG_DATA" | base64 --decode > /tmp/config
