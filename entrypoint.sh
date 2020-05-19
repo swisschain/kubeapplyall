@@ -14,7 +14,7 @@ export KUBECONFIG=/tmp/config
 
 kubectl get nodes
 
-Namespace=$(find Namespaces -type f)
+Namespace=$(grep -Rl "Namespace" / | grep -v .git)
 Configmap=$(find / -name "configmap*")
 Secret=$(find / -name secret.yaml)
 Deployment=$(find / -name deployment.yaml)
