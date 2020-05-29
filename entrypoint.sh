@@ -12,6 +12,7 @@ trap 'echo "\"${last_command}\" command filed with exit code $?."' EXIT
 echo "$KUBE_CONFIG_DATA" | base64 --decode > /tmp/config
 export KUBECONFIG=/tmp/config
 
+kubectl config current-context
 kubectl get nodes
 
 Namespace=$(find / -name "namespace*.yaml")
@@ -19,6 +20,7 @@ Configmap=$(find / -name "configmap*")
 Secret=$(find / -name secret.yaml)
 Deployment=$(find / -name deployment.yaml)
 Service=$(find / -name service.yaml)
+RBAC=$(find / -name rbac.yaml)
 
 for yaml in $Namespace
 do
@@ -41,6 +43,11 @@ do
 done
 
 for yaml in $Service
+do
+    kubectl apply -f $yaml
+done
+
+for yaml in $RBAC
 do
     kubectl apply -f $yaml
 done
