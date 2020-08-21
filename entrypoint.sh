@@ -8,11 +8,11 @@ export KUBECONFIG=/tmp/config
 
 kubectl get nodes
 
-Namespace=$(grep -Rl "Namespace")
-Configmap=$(find / -name "configmap*")
-Secret=$(find / -name secret.yaml)
-Deployment=$(find / -name deployment.yaml)
-Service=$(find / -name service.yaml)
+Namespace=$(find Kubernetes -name "namespace*")
+Configmap=$(find Kubernetes -name "configmap*")
+Secret=$(find Kubernetes -name secret.yaml)
+Deployment=$(find Kubernetes -name deployment.yaml)
+Service=$(find Kubernetes -name service.yaml)
 
 for yaml in $Namespace
 do
