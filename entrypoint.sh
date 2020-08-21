@@ -1,18 +1,34 @@
-#!/bin/sh
+#!/bin/bash
 
+# exit when any command fails
 set -e
+
+# keep track of the last executed command
+trap 'last_command=$current_command; current_command=$BASH_COMMAND' DEBUG
+# echo an error message before exiting
+trap 'echo "\"${last_command}\" command filed with exit code $?."' EXIT
 
 # Extract the base64 encoded config data and write this to the KUBECONFIG
 echo "$KUBE_CONFIG_DATA" | base64 --decode > /tmp/config
 export KUBECONFIG=/tmp/config
 
+kubectl config current-context
 kubectl get nodes
 
+<<<<<<< HEAD
 Namespace=$(find Kubernetes -name "namespace*")
 Configmap=$(find Kubernetes -name "configmap*")
 Secret=$(find Kubernetes -name secret.yaml)
 Deployment=$(find Kubernetes -name deployment.yaml)
 Service=$(find Kubernetes -name service.yaml)
+=======
+Namespace=$(find / -name "namespace*.yaml")
+Configmap=$(find / -name "configmap*")
+Secret=$(find / -name secret.yaml)
+Deployment=$(find / -name deployment.yaml)
+Service=$(find / -name service.yaml)
+RBAC=$(find / -name rbac.yaml)
+>>>>>>> e3ea3d24345a2d00e0dfecd5cbab57ca0982f58b
 
 for yaml in $Namespace
 do
@@ -35,6 +51,11 @@ do
 done
 
 for yaml in $Service
+do
+    kubectl apply -f $yaml
+done
+
+for yaml in $RBAC
 do
     kubectl apply -f $yaml
 done
