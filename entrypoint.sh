@@ -20,7 +20,7 @@ Configmap=$(find Kubernetes -name "configmap*")
 Secret=$(find Kubernetes -name secret.yaml)
 Deployment=$(find Kubernetes -name deployment.yaml)
 Service=$(find Kubernetes -name service.yaml)
-RBAC=$(find /Kubernetes -name rbac.yaml)
+RBAC=$(find Kubernetes -name rbac.yaml)
 
 for yaml in $Namespace
 do
