@@ -14,7 +14,7 @@ export KUBECONFIG=/tmp/config
 
 kubectl config current-context
 kubectl get nodes
-
+ls -la
 Namespace=$(find Kubernetes -name "namespace*")
 Configmap=$(find Kubernetes -name "configmap*")
 Secret=$(find Kubernetes -name secret.yaml)
