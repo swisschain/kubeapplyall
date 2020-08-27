@@ -15,12 +15,12 @@ export KUBECONFIG=/tmp/config
 kubectl config current-context
 kubectl get nodes
 ls -la
-Namespace=$(find Kubernetes -name "namespace*")
-Configmap=$(find Kubernetes -name "configmap*")
-Secret=$(find Kubernetes -name secret.yaml)
-Deployment=$(find Kubernetes -name deployment.yaml)
-Service=$(find Kubernetes -name service.yaml)
-RBAC=$(find Kubernetes -name rbac.yaml)
+Namespace=$(find / -name "namespace*")
+Configmap=$(find / -name "configmap*")
+Secret=$(find / -name secret.yaml)
+Deployment=$(find / -name deployment.yaml)
+Service=$(find / -name service.yaml)
+RBAC=$(find / -name rbac.yaml)
 
 for yaml in $Namespace
 do
