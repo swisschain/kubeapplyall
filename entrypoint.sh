@@ -14,13 +14,13 @@ export KUBECONFIG=/tmp/config
 
 kubectl config current-context
 kubectl get nodes
-
-Namespace=$(find / -name "namespace*.yaml")
-Configmap=$(find / -name "configmap*")
-Secret=$(find / -name secret.yaml)
-Deployment=$(find / -name deployment.yaml)
-Service=$(find / -name service.yaml)
-RBAC=$(find / -name rbac.yaml)
+ls -la
+Namespace=$(find . -name "namespace*")
+Configmap=$(find . -name "configmap*")
+Secret=$(find . -name secret.yaml)
+Deployment=$(find . -name deployment.yaml)
+Service=$(find . -name service.yaml)
+RBAC=$(find . -name rbac.yaml)
 
 for namespace in $Namespace
 do
