@@ -16,7 +16,7 @@ kubectl config current-context
 kubectl get nodes
 ls -la
 Namespace=$(find . -name "namespace*")
-Configmap=$(find . -name "configmap*")
+Configmap=$(find . -name "configmap*.yaml")
 Secret=$(find . -name secret.yaml)
 Deployment=$(find . -name deployment.yaml)
 Service=$(find . -name service.yaml)
