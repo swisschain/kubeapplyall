@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # exit when any command fails
-set -e
+#set -e
 
 # keep track of the last executed command
 trap 'last_command=$current_command; current_command=$BASH_COMMAND' DEBUG
@@ -18,10 +18,10 @@ kubectl get nodes
 ls -la
 Namespace=$(find . -name "namespace*"|grep -v prod)
 Configmap=$(find . -name "configmap*.yaml"|grep -v prod)
-Secret=$(find . -name "secret.yaml"|grep -v prod)
-Deployment=$(find . -name "deployment.yaml"|grep -v prod)
-Service=$(find . -name "service.yaml"|grep -v prod)
-RBAC=$(find . -name "rbac.yaml"|grep -v prod)
+Secret=$(find . -name secret.yaml|grep -v prod)
+Deployment=$(find . -name deployment.yaml|grep -v prod)
+Service=$(find . -name service.yaml|grep -v prod)
+RBAC=$(find . -name rbac.yaml|grep -v prod)
 
 for namespace in $Namespace
 do
